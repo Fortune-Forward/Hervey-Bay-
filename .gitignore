@@ -1,0 +1,5 @@
+# 机密/内部文件 —— 不进仓库（Pages 公开后所有入库文件均可被访问）
+.DS_Store
+*.pdf
+*.png
+Pacific-Waters-项目卖点研究档案.md
