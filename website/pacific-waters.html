@@ -97,7 +97,10 @@
   .infra-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
   @media(max-width:980px){.infra-cards{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:540px){.infra-cards{grid-template-columns:1fr}}
-  .infra-card{background:var(--white);border:1px solid var(--line);border-radius:2px;padding:26px 24px}
+  .infra-card{background:var(--white);border:1px solid var(--line);border-radius:2px;padding:0 0 26px;overflow:hidden}
+  .infra-card .pic{display:block;width:100%;height:auto;margin-bottom:18px}
+  .infra-card b,.infra-card h4,.infra-card span{padding:0 24px}
+  .infra-feature .pic-lg{display:block;width:100%;height:auto;border-radius:2px;margin-bottom:16px}
   .infra-card b{display:block;font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:#1E5F7E;font-variant-numeric:tabular-nums}
   .infra-card h4{font-size:16.5px;font-weight:500;margin:6px 0 4px;font-family:'Noto Sans SC',sans-serif}
   .infra-card span{font-size:13.5px;color:var(--ink-soft);display:block}
@@ -261,15 +264,101 @@
         <div class="amt">$4.5 亿<small>喜来登（Sheraton）滨海度假村 · Torquay Esplanade</small></div>
       </div>
       <div>
+        <svg class="pic-lg" viewBox="0 0 340 190" role="img" aria-label="喜来登滨海度假村双塔插画">
+          <rect width="340" height="190" fill="#DCEBF3"/>
+          <circle cx="288" cy="38" r="17" fill="#F2D9A0"/>
+          <path d="M0,160 L340,160 L340,190 L0,190 Z" fill="#8FBFD4"/>
+          <path d="M0,160 C40,154 80,166 120,160 C160,154 200,166 240,160 C280,154 320,166 340,160" fill="none" stroke="#FDFBF7" stroke-width="2" opacity=".6"/>
+          <!-- 住宅塔 16 层 -->
+          <rect x="62" y="26" width="58" height="134" fill="#28698A"/>
+          <g fill="#DCEBF3" opacity=".85">
+            <rect x="68" y="34" width="46" height="4"/><rect x="68" y="42" width="46" height="4"/><rect x="68" y="50" width="46" height="4"/><rect x="68" y="58" width="46" height="4"/><rect x="68" y="66" width="46" height="4"/><rect x="68" y="74" width="46" height="4"/><rect x="68" y="82" width="46" height="4"/><rect x="68" y="90" width="46" height="4"/><rect x="68" y="98" width="46" height="4"/><rect x="68" y="106" width="46" height="4"/><rect x="68" y="114" width="46" height="4"/><rect x="68" y="122" width="46" height="4"/><rect x="68" y="130" width="46" height="4"/><rect x="68" y="138" width="46" height="4"/><rect x="68" y="146" width="46" height="4"/>
+          </g>
+          <!-- 酒店塔 12 层 -->
+          <rect x="150" y="58" width="52" height="102" fill="#3E88AA"/>
+          <g fill="#DCEBF3" opacity=".85">
+            <rect x="156" y="66" width="40" height="4"/><rect x="156" y="74" width="40" height="4"/><rect x="156" y="82" width="40" height="4"/><rect x="156" y="90" width="40" height="4"/><rect x="156" y="98" width="40" height="4"/><rect x="156" y="106" width="40" height="4"/><rect x="156" y="114" width="40" height="4"/><rect x="156" y="122" width="40" height="4"/><rect x="156" y="130" width="40" height="4"/><rect x="156" y="138" width="40" height="4"/><rect x="156" y="146" width="40" height="4"/>
+          </g>
+          <!-- 连接裙楼 + 屋顶酒吧 -->
+          <rect x="120" y="132" width="30" height="28" fill="#1E5F7E"/>
+          <rect x="146" y="50" width="60" height="6" fill="#1E5F7E"/>
+          <!-- 棕榈树 -->
+          <g transform="translate(242,118)">
+            <rect x="-2" y="6" width="4" height="38" fill="#7A6A4F"/>
+            <path d="M0,8 C-16,0 -28,4 -34,12 C-20,10 -8,12 0,8 Z" fill="#5E8F6E"/>
+            <path d="M0,8 C16,0 28,4 34,12 C20,10 8,12 0,8 Z" fill="#5E8F6E"/>
+            <path d="M0,8 C-8,-6 -6,-16 0,-22 C2,-12 4,-4 0,8 Z" fill="#6FA07D"/>
+            <path d="M0,8 C8,-6 6,-16 2,-22 C-2,-12 -2,-4 0,8 Z" fill="#527F62"/>
+          </g>
+        </svg>
         <p>由万豪国际运营，16 层住宅塔与 12 层酒店塔相连——223 间五星客房、400 套公寓、屋顶酒吧餐厅、会议中心与 1,000㎡ 零售餐饮。国际酒店资本的进场，标志着赫维湾正从悠闲海滨小城，走向全国性旅游与人口增长走廊。</p>
         <div class="specs"><span>16 + 12 层双塔</span><span>223 间客房</span><span>400 套公寓</span><span>屋顶餐饮与会议中心</span></div>
       </div>
     </div>
     <div class="infra-cards">
-      <div class="infra-card"><b>$1.09 亿</b><h4>城市中心社区枢纽</h4><span>Pialba 五层地标：图书馆、议会办公与公共广场，2026 年中完工</span></div>
-      <div class="infra-card"><b>$0.8 亿</b><h4>区域医疗升级</h4><span>医院扩建招标中，新病房与屋顶停机坪已投用，550 车位停车楼收官</span></div>
-      <div class="infra-card"><b>$0.18 亿</b><h4>机场航站楼升级</h4><span>候机容量翻倍至近 500 座，2028 年完工，为新增航线铺路</span></div>
-      <div class="infra-card"><b>$0.6 亿</b><h4>Marina Square 码头酒店</h4><span>Urangan 码头旁 144 房四星酒店与旅游配套，规划推进中</span></div>
+      <div class="infra-card">
+        <svg class="pic" viewBox="0 0 240 110" role="img" aria-label="城市中心社区枢纽插画">
+          <rect width="240" height="110" fill="#DCEBF3"/>
+          <rect x="0" y="96" width="240" height="14" fill="#C3D9E5"/>
+          <rect x="58" y="30" width="90" height="66" fill="#28698A"/>
+          <g fill="#DCEBF3" opacity=".9"><rect x="66" y="38" width="74" height="6"/><rect x="66" y="50" width="74" height="6"/><rect x="66" y="62" width="74" height="6"/><rect x="66" y="74" width="74" height="6"/></g>
+          <rect x="148" y="52" width="34" height="44" fill="#3E88AA"/>
+          <g fill="#DCEBF3" opacity=".9"><rect x="154" y="60" width="22" height="5"/><rect x="154" y="70" width="22" height="5"/><rect x="154" y="80" width="22" height="5"/></g>
+          <rect x="96" y="78" width="14" height="18" fill="#1E5F7E"/>
+          <circle cx="38" cy="84" r="10" fill="#6FA07D"/><rect x="36" y="88" width="4" height="8" fill="#7A6A4F"/>
+          <circle cx="204" cy="86" r="8" fill="#6FA07D"/><rect x="202" y="90" width="4" height="6" fill="#7A6A4F"/>
+        </svg>
+        <b>$1.09 亿</b><h4>城市中心社区枢纽</h4><span>Pialba 五层地标：图书馆、议会办公与公共广场，2026 年中完工</span>
+      </div>
+      <div class="infra-card">
+        <svg class="pic" viewBox="0 0 240 110" role="img" aria-label="区域医疗升级插画">
+          <rect width="240" height="110" fill="#DCEBF3"/>
+          <rect x="0" y="96" width="240" height="14" fill="#C3D9E5"/>
+          <rect x="52" y="42" width="104" height="54" fill="#28698A"/>
+          <g fill="#DCEBF3" opacity=".9"><rect x="60" y="52" width="14" height="10"/><rect x="82" y="52" width="14" height="10"/><rect x="104" y="52" width="14" height="10"/><rect x="126" y="52" width="14" height="10"/><rect x="60" y="70" width="14" height="10"/><rect x="82" y="70" width="14" height="10"/><rect x="126" y="70" width="14" height="10"/></g>
+          <rect x="104" y="74" width="14" height="22" fill="#1E5F7E"/>
+          <rect x="92" y="24" width="24" height="24" fill="#FDFBF7"/>
+          <rect x="101" y="29" width="6" height="14" fill="#C25B5B"/><rect x="97" y="33" width="14" height="6" fill="#C25B5B"/>
+          <circle cx="186" cy="60" r="16" fill="#3E88AA"/>
+          <text x="186" y="66" text-anchor="middle" font-size="16" font-weight="bold" fill="#FDFBF7" font-family="Arial">H</text>
+        </svg>
+        <b>$0.8 亿</b><h4>区域医疗升级</h4><span>医院扩建招标中，新病房与屋顶停机坪已投用，550 车位停车楼收官</span>
+      </div>
+      <div class="infra-card">
+        <svg class="pic" viewBox="0 0 240 110" role="img" aria-label="机场航站楼升级插画">
+          <rect width="240" height="110" fill="#DCEBF3"/>
+          <rect x="0" y="96" width="240" height="14" fill="#C3D9E5"/>
+          <path d="M40,96 L52,64 L140,64 L152,96 Z" fill="#28698A"/>
+          <g fill="#DCEBF3" opacity=".9"><rect x="62" y="74" width="68" height="8"/></g>
+          <rect x="158" y="48" width="12" height="48" fill="#3E88AA"/>
+          <rect x="152" y="40" width="24" height="12" fill="#1E5F7E"/>
+          <g transform="translate(74,26) rotate(-14)">
+            <path d="M0,6 L44,6 L54,10 L44,14 L0,14 C-4,12 -4,8 0,6 Z" fill="#FDFBF7"/>
+            <path d="M16,6 L8,-6 L14,-6 L26,6 Z" fill="#FDFBF7"/>
+            <path d="M16,14 L10,24 L15,24 L26,14 Z" fill="#FDFBF7"/>
+          </g>
+          <path d="M60,52 C80,40 104,32 128,30" stroke="#FDFBF7" stroke-width="2" stroke-dasharray="4 5" fill="none" opacity=".8"/>
+        </svg>
+        <b>$0.18 亿</b><h4>机场航站楼升级</h4><span>候机容量翻倍至近 500 座，2028 年完工，为新增航线铺路</span>
+      </div>
+      <div class="infra-card">
+        <svg class="pic" viewBox="0 0 240 110" role="img" aria-label="Marina Square 码头酒店插画">
+          <rect width="240" height="110" fill="#DCEBF3"/>
+          <rect x="0" y="78" width="240" height="32" fill="#8FBFD4"/>
+          <path d="M0,78 C30,73 60,83 90,78 C120,73 150,83 180,78 C210,73 230,83 240,78" fill="none" stroke="#FDFBF7" stroke-width="2" opacity=".6"/>
+          <rect x="36" y="34" width="58" height="44" fill="#28698A"/>
+          <g fill="#DCEBF3" opacity=".9"><rect x="43" y="42" width="44" height="5"/><rect x="43" y="52" width="44" height="5"/><rect x="43" y="62" width="44" height="5"/></g>
+          <rect x="110" y="70" width="96" height="7" fill="#7A6A4F"/>
+          <rect x="118" y="77" width="5" height="14" fill="#5E4F3A"/><rect x="150" y="77" width="5" height="14" fill="#5E4F3A"/><rect x="182" y="77" width="5" height="14" fill="#5E4F3A"/>
+          <g transform="translate(158,28)">
+            <rect x="14" y="0" width="3" height="34" fill="#1E5F7E"/>
+            <path d="M14,2 C4,12 2,24 6,34 L14,34 Z" fill="#FDFBF7"/>
+            <path d="M18,4 C26,12 28,24 25,34 L18,34 Z" fill="#F2D9A0"/>
+            <path d="M0,36 L32,36 L26,46 L6,46 Z" fill="#3E88AA"/>
+          </g>
+        </svg>
+        <b>$0.6 亿</b><h4>Marina Square 码头酒店</h4><span>Urangan 码头旁 144 房四星酒店与旅游配套，规划推进中</span>
+      </div>
     </div>
     <div class="infra-strip"><b>门前路同步升级</b><span>Pialba Burrum Heads 路交叉口升级已列入澳联邦基建投资计划——这正是 Pacific Waters 的门前道路，社区通达性将直接受益。</span></div>
     <p class="infra-note">信息更新于 2026 年 8 月；项目金额与时间线以政府及开发方官方公布为准。</p>
