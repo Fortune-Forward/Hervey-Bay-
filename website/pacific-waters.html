@@ -109,6 +109,20 @@
   .infra-strip span{color:var(--ink-soft);font-size:15px}
   .infra-note{font-size:12.5px;color:#93A8B2;margin-top:16px}
 
+  /* position map */
+  .pos{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center;margin-top:48px}
+  @media(max-width:860px){.pos{grid-template-columns:1fr}}
+  .pos svg{width:100%;height:auto;display:block;border-radius:2px}
+  .pos-list{list-style:none;display:grid;gap:0}
+  .pos-list li{display:flex;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+  .pos-list li:first-child{border-top:1px solid var(--line)}
+  .pos-list .n{font-size:15.5px;flex:1}
+  .pos-list .d{font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  .pos-list .t{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:500;color:#1E5F7E;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .pos-note{font-size:12.5px;color:#93A8B2;margin-top:14px}
+  .pos-wide{margin-top:48px}
+  .pos-wide svg{width:100%;max-width:920px;height:auto;display:block;margin:0 auto;border-radius:2px}
+
   /* masterplan */
   .plan-grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(32px,5vw,64px);align-items:center}
   @media(max-width:880px){.plan-grid{grid-template-columns:1fr}}
@@ -362,6 +376,113 @@
     </div>
     <div class="infra-strip"><b>门前路同步升级</b><span>Pialba Burrum Heads 路交叉口升级已列入澳联邦基建投资计划——这正是 Pacific Waters 的门前道路，社区通达性将直接受益。</span></div>
     <p class="infra-note">信息更新于 2026 年 8 月；项目金额与时间线以政府及开发方官方公布为准。</p>
+  </div>
+</section>
+
+<section id="position">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Where You Are</div>
+      <h2>项目区位：一切近在咫尺</h2>
+      <p class="lede" style="margin-top:16px">Pacific Waters 北界即 Sempfs 路——穿过北侧街区，步行约 10 分钟就能踩到邓多兰海滩的沙，开车仅 3 分钟；沿门前的 Pialba Burrum Heads 路，东西两侧串起新旧两代购物中心与全部生活配套。</p>
+    </div>
+    <div class="pos-wide">
+      <svg viewBox="0 0 720 520" role="img" aria-label="Pacific Waters 项目区位图：标注各设施车程与距离">
+        <rect width="720" height="520" fill="#EFE8DA"/>
+        <!-- 海湾 -->
+        <path d="M0,118 C90,104 170,124 250,112 C340,98 420,124 500,104 C580,86 660,70 720,48 L720,0 L0,0 Z" fill="#C9E0EC"/>
+        <path d="M0,118 C90,104 170,124 250,112 C340,98 420,124 500,104 C580,86 660,70 720,48" fill="none" stroke="#E3D3B4" stroke-width="6" stroke-linecap="round"/>
+        <text x="430" y="44" font-size="16" letter-spacing="5" fill="#5B8CA6" font-family="'Noto Sans SC',sans-serif">赫 维 湾</text>
+        <!-- 道路 -->
+        <path d="M16,332 L704,300" stroke="#D9CBB2" stroke-width="8" stroke-linecap="round"/>
+        <text x="300" y="322" font-size="11" fill="#A08F72" font-family="'Noto Sans SC',sans-serif">Pialba Burrum Heads 路</text>
+        <path d="M252,330 L248,116" stroke="#D9CBB2" stroke-width="5" stroke-linecap="round"/>
+        <!-- 连线 -->
+        <g stroke="#3E88AA" stroke-width="1.5" stroke-dasharray="2 6" opacity=".7" fill="none">
+          <path d="M196,358 L248,122"/>
+          <path d="M140,368 L76,318"/>
+          <path d="M252,392 L400,352"/>
+          <path d="M252,378 L432,286"/>
+          <path d="M252,372 L474,246"/>
+          <path d="M252,366 L540,224"/>
+          <path d="M252,384 L556,338"/>
+          <path d="M252,360 L648,142"/>
+          <path d="M252,396 L640,414"/>
+        </g>
+        <!-- 项目地块与大头针 -->
+        <rect x="138" y="342" width="112" height="86" rx="3" fill="#28698A" opacity=".14"/>
+        <rect x="138" y="342" width="112" height="86" rx="3" fill="none" stroke="#28698A" stroke-width="2" stroke-dasharray="5 4"/>
+        <g transform="translate(194,384)">
+          <path d="M0,26 C-15,6 -17,-3 -17,-9 A17,17 0 1 1 17,-9 C17,-3 15,6 0,26 Z" fill="#1E5F7E"/>
+          <circle cx="0" cy="-9" r="7.5" fill="#FDFBF7"/>
+        </g>
+        <text x="194" y="446" font-size="16.5" fill="#16323F" font-family="'Noto Serif SC',serif" font-weight="600" text-anchor="middle">Pacific Waters</text>
+        <text x="194" y="464" font-size="11.5" fill="#4E6874" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">Greensill 路 · Dundowran</text>
+
+        <!-- 1 邓多兰海滩 -->
+        <circle cx="248" cy="122" r="5.5" fill="#28698A"/>
+        <text x="240" y="146" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif">邓多兰海滩</text>
+        <rect x="238" y="154" rx="10" width="164" height="21" fill="#28698A"/>
+        <text x="320" y="169" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">车程 3 分钟 · 步行 10 分钟 · 2 km</text>
+
+        <!-- 2 新 Woolworths -->
+        <circle cx="76" cy="318" r="5.5" fill="#3E88AA"/>
+        <text x="76" y="268" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">全新 Woolworths</text>
+        <rect x="42" y="274" rx="3" width="34" height="16" fill="#C9762B"/>
+        <text x="59" y="286" font-size="10.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">新建</text>
+        <rect x="80" y="274" rx="10" width="88" height="16" fill="#28698A" opacity="0"/>
+        <rect x="16" y="294" rx="10" width="120" height="21" fill="#28698A"/>
+        <text x="76" y="309" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">4 分钟 · 约 3 km</text>
+
+        <!-- 3 Yarrilee 小学 -->
+        <circle cx="400" cy="352" r="5.5" fill="#28698A"/>
+        <text x="400" y="376" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">Yarrilee 公立小学</text>
+        <rect x="340" y="382" rx="10" width="120" height="21" fill="#28698A"/>
+        <text x="400" y="397" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">7 分钟 · 约 5 km</text>
+
+        <!-- 4 Eli Waters 购物中心 -->
+        <circle cx="432" cy="286" r="5.5" fill="#28698A"/>
+        <text x="446" y="290" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif">Eli Waters 购物中心</text>
+        <rect x="444" y="296" rx="10" width="120" height="21" fill="#28698A"/>
+        <text x="504" y="311" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">8 分钟 · 约 5 km</text>
+
+        <!-- 5 Serenity Dr 新 Coles+Aldi -->
+        <circle cx="474" cy="246" r="5.5" fill="#3E88AA"/>
+        <text x="488" y="240" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif">Serenity Dr · Coles + Aldi 商圈</text>
+        <rect x="488" y="246" rx="3" width="46" height="16" fill="#C9762B"/>
+        <text x="511" y="258" font-size="10.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">扩建中</text>
+        <rect x="540" y="244" rx="10" width="120" height="21" fill="#28698A"/>
+        <text x="600" y="259" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">8 分钟 · 约 6 km</text>
+
+        <!-- 6 Stockland · Pialba -->
+        <circle cx="540" cy="224" r="5.5" fill="#28698A"/>
+        <text x="540" y="204" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">Stockland · Pialba 市中心</text>
+        <rect x="478" y="210" rx="10" width="124" height="21" fill="#28698A" opacity="0"/>
+        <rect x="418" y="214" rx="10" width="124" height="21" fill="#28698A" opacity="0"/>
+        <rect x="476" y="166" rx="10" width="128" height="21" fill="#28698A"/>
+        <text x="540" y="181" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">11 分钟 · 约 9 km</text>
+
+        <!-- 7 医院群 -->
+        <circle cx="556" cy="338" r="5.5" fill="#28698A"/>
+        <text x="556" y="362" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">赫维湾医院群</text>
+        <rect x="492" y="368" rx="10" width="128" height="21" fill="#28698A"/>
+        <text x="556" y="383" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">12 分钟 · 约 10 km</text>
+
+        <!-- 8 乌兰根长堤 -->
+        <circle cx="648" cy="142" r="5.5" fill="#28698A"/>
+        <text x="640" y="122" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">海滨大道 · 乌兰根长堤</text>
+        <rect x="576" y="150" rx="10" width="128" height="21" fill="#28698A"/>
+        <text x="640" y="165" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">15 分钟 · 约 12 km</text>
+
+        <!-- 9 机场 -->
+        <circle cx="640" cy="414" r="5.5" fill="#28698A"/>
+        <text x="640" y="438" font-size="13" fill="#16323F" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">赫维湾机场</text>
+        <rect x="576" y="444" rx="10" width="128" height="21" fill="#28698A"/>
+        <text x="640" y="459" font-size="11.5" fill="#FDFBF7" font-family="'Noto Sans SC',sans-serif" text-anchor="middle">16 分钟 · 约 14 km</text>
+
+        <text x="18" y="504" font-size="11" fill="#93A8B2" font-family="'Noto Sans SC',sans-serif">距离与车程为一般路况下的估算，示意图非精确比例。</text>
+      </svg>
+    </div>
   </div>
 </section>
 
