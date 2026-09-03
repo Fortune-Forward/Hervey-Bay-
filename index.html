@@ -54,31 +54,28 @@
   @media(max-width:820px){nav ul{display:none}}
 
   /* ---------- hero ---------- */
-  header{position:relative;min-height:94vh;display:flex;align-items:flex-end;background:var(--sea-deep);color:var(--white);overflow:hidden}
-  header .bg{position:absolute;inset:0;background-image:url("img/img003.jpg");background-size:cover;background-position:center 30%}
-  header .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(90,150,180,.28) 0%,rgba(90,150,180,.04) 45%,rgba(30,86,114,.72) 100%)}
-  header .inner{position:relative;width:100%;padding:120px clamp(20px,4vw,48px) 88px;max-width:1180px;margin:0 auto}
-  header .pre{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.6vw,18px);letter-spacing:.34em;text-transform:uppercase;color:var(--sea-soft);margin-bottom:22px}
-  header h1{font-size:clamp(38px,6.4vw,76px);font-weight:500;letter-spacing:.06em}
-  header .sub{margin-top:18px;font-size:16px;letter-spacing:.2em;color:#D9E6EC;font-weight:300}
-  .scroll-cue{margin-top:52px;font-size:12.5px;letter-spacing:.4em;color:var(--sea-soft)}
-  .scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(var(--sea-soft),transparent);margin-top:12px}
+  header{position:relative;min-height:94vh;display:flex;align-items:center;justify-content:center;background:var(--sea-deep);color:var(--white);overflow:hidden}
+  header .bg{position:absolute;inset:0;background-image:url("img/img003.jpg");background-size:cover;background-position:center 34%}
+  header .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,34,46,.34) 0%,rgba(14,34,46,.14) 40%,rgba(14,34,46,.30) 72%,rgba(14,34,46,.56) 100%)}
+  header .inner{position:relative;width:100%;padding:120px clamp(20px,4vw,48px);max-width:1180px;margin:0 auto;text-align:center}
+  header .pre{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,1.6vw,18px);letter-spacing:.34em;text-transform:uppercase;color:#FFFFFF;margin-bottom:22px;opacity:.92}
+  header h1{font-size:clamp(38px,6.4vw,76px);font-weight:500;letter-spacing:.06em;color:#FFFFFF;text-shadow:0 2px 24px rgba(10,26,36,.42)}
+  header .sub{margin-top:20px;font-size:16px;letter-spacing:.2em;color:#FFFFFF;font-weight:300}
+  .scroll-cue{margin-top:52px;font-size:12.5px;letter-spacing:.4em;color:#FFFFFF;opacity:.85}
+  .scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(#FFFFFF,transparent);margin:12px auto 0}
 
-  /* 手机端首屏：照片完整显示（四人不裁切），文案移到照片下方 */
   @media(max-width:820px){
-    header{min-height:0;display:block;background:var(--sea-deep);align-items:stretch}
-    header .bg{position:relative;inset:auto;width:100%;aspect-ratio:1/1.12;
-               background-position:center 40%}
-    header .veil{position:absolute;top:0;left:0;right:0;bottom:auto;height:100%;
-                 background:linear-gradient(180deg,rgba(16,38,50,.18) 0%,rgba(16,38,50,0) 34%,
-                            rgba(40,105,138,.35) 78%,var(--sea-deep) 100%)}
-    header .inner{padding:24px 20px 40px;max-width:none}
-    header .pre{margin-bottom:14px}
-    header h1{font-size:clamp(32px,9vw,42px)}
-    header .sub{margin-top:12px;font-size:14px;line-height:1.9}
-    .scroll-cue{margin-top:30px}
-    .scroll-cue::after{height:32px}
+    header{min-height:92vh}
+    header .inner{padding:96px 22px}
+    header h1{font-size:clamp(32px,9vw,44px)}
+    header .sub{font-size:13.5px;letter-spacing:.16em;line-height:2}
   }
+  /* 文字入场动效：上移淡入 */
+  @keyframes riseIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+  .rise{opacity:0;animation:riseIn .95s cubic-bezier(.22,.7,.3,1) forwards}
+  .rise.d1{animation-delay:.15s}.rise.d2{animation-delay:.42s}
+  .rise.d3{animation-delay:.68s}.rise.d4{animation-delay:.94s}
+  @media(prefers-reduced-motion:reduce){.rise{opacity:1;animation:none}}
 
   /* ---------- sections ---------- */
   section{padding:clamp(64px,9vw,120px) 0}
@@ -94,9 +91,10 @@
   .keyline div span{font-size:13px;color:var(--ink-soft);letter-spacing:.08em}
 
   /* stats band — 浅蓝 */
-  .band{background:var(--sky);color:var(--ink)}
+  .band{background:var(--sky);color:var(--ink);padding:0}
+  .band-body{padding:clamp(48px,7vw,84px) clamp(20px,4vw,48px)}
   .band h2{font-size:clamp(28px,3.6vw,42px);margin-bottom:16px;color:#1E5F7E}
-  .band>.wrap>p{color:var(--ink-soft);max-width:none}
+  .band .band-body>p{color:var(--ink-soft);max-width:none}
   .stats{margin-top:52px;display:grid;grid-template-columns:repeat(5,1fr);gap:28px;border-top:1px solid var(--sky-line);padding-top:40px}
   @media(max-width:980px){.stats{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
@@ -233,7 +231,7 @@
   .pol img{width:100%;height:clamp(185px,21vw,268px);object-fit:cover;display:block}
   .pol figcaption{position:absolute;left:13px;right:13px;bottom:15px;font-size:12.5px;color:var(--ink-soft);text-align:center;
        white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  @media(min-width:821px){#welcome .split{grid-template-columns:1fr 1fr}}
+  #welcome .split{grid-template-columns:1fr}
   .stack-dark .pol{background:#141618;padding:14px 14px 46px;box-shadow:0 14px 34px rgba(0,0,0,.34)}
   .stack-dark .pol.on{box-shadow:0 22px 50px rgba(0,0,0,.42)}
   .stack-dark .pol figcaption{color:#C6D4DB}
@@ -247,30 +245,24 @@
   .cat-copy ul{list-style:none;font-size:15.5px;color:var(--ink-soft);display:grid;gap:8px}
 
 
-  /* 胶卷式图片条 */
-  .film-wrap{margin:40px 0 34px;overflow:hidden;padding:22px 0}
-  .film{transform:rotate(-2deg);width:112%;margin-left:-6%;
-        filter:drop-shadow(0 16px 34px rgba(20,45,60,.26))}
-  .film-holes{height:19px;
-        background:
-          linear-gradient(#15181B,#15181B) top/100% 4px no-repeat,
-          linear-gradient(#15181B,#15181B) bottom/100% 4px no-repeat,
-          repeating-linear-gradient(90deg,#15181B 0 15px,transparent 15px 30px)}
-  .film-frames{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;padding:7px;background:#15181B}
-  .film-frames figure{overflow:hidden;background:#0C0E10}
-  .film-frames img{width:100%;height:clamp(122px,16.5vw,232px);object-fit:cover;display:block;
-        transition:transform .6s ease}
-  .film-frames figure:hover img{transform:scale(1.05)}
-  @media(max-width:760px){
-    .film{transform:rotate(-1.5deg);width:116%;margin-left:-8%}
-    .film-frames{grid-template-columns:repeat(2,1fr)}
-    .film-frames img{height:120px}
-    .film-holes{height:15px;background:
-          linear-gradient(#15181B,#15181B) top/100% 3px no-repeat,
-          linear-gradient(#15181B,#15181B) bottom/100% 3px no-repeat,
-          repeating-linear-gradient(90deg,#15181B 0 11px,transparent 11px 22px)}
-  }
+  /* 图片横向跑马灯（一步一停） */
+  .strip{position:relative;width:100%;overflow:hidden;background:#0E222E}
+  .strip-track{display:flex;will-change:transform}
+  .strip-track figure{flex:0 0 25%;overflow:hidden}
+  .strip-track img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;display:block}
+  @media(max-width:980px){.strip-track figure{flex-basis:33.333%}}
+  @media(max-width:640px){.strip-track figure{flex-basis:50%}}
 
+  /* 大图标题区 */
+  .band-hero{position:relative;display:flex;align-items:center;justify-content:center;
+             min-height:clamp(300px,42vw,520px);overflow:hidden;text-align:center}
+  .band-hero .bh-bg{position:absolute;inset:0;background-size:cover;background-position:center 58%}
+  .band-hero .bh-veil{position:absolute;inset:0;
+       background:linear-gradient(180deg,rgba(12,32,44,.42) 0%,rgba(12,32,44,.28) 45%,rgba(12,32,44,.50) 100%)}
+  .band-hero .bh-in{position:relative;padding:clamp(48px,7vw,90px) clamp(20px,5vw,48px);max-width:900px}
+  .band-hero .eyebrow{color:#FFFFFF;opacity:.9;margin-bottom:16px}
+  .band-hero h2{color:#FFFFFF!important;font-size:clamp(26px,3.8vw,44px);margin:0;
+       text-shadow:0 2px 22px rgba(8,24,34,.45)}
 
   /* ===== 手机端：全部改为整屏纵向流，一张一行、不裁切、无需点按 ===== */
   @media(max-width:820px){
@@ -352,10 +344,10 @@
   <div class="bg" role="img" aria-label="一家人在夕阳下的海滩漫步"></div>
   <div class="veil"></div>
   <div class="inner">
-    <div class="pre">Pacific Waters · Dundowran Beach</div>
-    <h1>生活，自然流淌</h1>
-    <p class="sub">澳洲昆士兰 · 弗雷泽海岸 · 全新总体规划滨海社区</p>
-    <div class="scroll-cue">下滑了解</div>
+    <div class="pre rise d1">Pacific Waters · Dundowran Beach</div>
+    <h1 class="rise d2">生活，自然流淌</h1>
+    <p class="sub rise d3">澳洲昆士兰 · 弗雷泽海岸 · 全新总体规划滨海社区</p>
+    <div class="scroll-cue rise d4">下滑了解</div>
   </div>
 </header>
 
@@ -373,34 +365,30 @@
         <div><b>224<span class="en" style="font-size:18px"> 席</span></b><span>首期规划地块</span></div>
       </div>
     </div>
-    <div class="stack stack-dark" data-start="1">
-      <button class="snav prev" aria-label="上一张">&#8249;</button>
-      <figure class="pol"><img loading="lazy" decoding="async" src="img/w01.jpg" alt="退潮时分在浅滩海钓的身影"><figcaption>退潮海钓 · 邓多兰海滩</figcaption></figure>
-      <figure class="pol"><img loading="lazy" decoding="async" src="img/w03.jpg" alt="海滨长椅上相伴看海的老夫妻"><figcaption>海滨大道 · 相伴看海</figcaption></figure>
-      <figure class="pol"><img loading="lazy" decoding="async" src="img/w02.jpg" alt="晚霞中的木质长堤"><figcaption>长堤晚霞</figcaption></figure>
-      <button class="snav next" aria-label="下一张">&#8250;</button>
-    </div>
   </div>
 </section>
 
 <section id="herveybay" class="band">
-  <div class="wrap">
-    <div class="eyebrow on-dark">Discover Hervey Bay</div>
-    <h2>昆士兰最值得安居与投资的滨海城市之一</h2>
-  </div>
-  <div class="film-wrap">
-      <div class="film">
-        <div class="film-holes top"></div>
-        <div class="film-frames">
-          <figure><img loading="lazy" decoding="async" src="img/w04.jpg" alt="树荫下的长椅与远处的长堤"></figure>
-          <figure><img loading="lazy" decoding="async" src="img/w05.jpg" alt="Pier Park 旁色彩缤纷的街角小店"></figure>
-          <figure><img loading="lazy" decoding="async" src="img/w06.jpg" alt="停在长堤栏杆上的鹈鹕"></figure>
-          <figure><img loading="lazy" decoding="async" src="img/w07.jpg" alt="长堤上垂钓的父子"></figure>
-        </div>
-        <div class="film-holes bot"></div>
+  <div class="strip" data-interval="3200">
+    <div class="strip-track">
+      <figure><img loading="lazy" decoding="async" src="img/w04.jpg" alt="树荫下的长椅与远处的长堤"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w01.jpg" alt="退潮时分在浅滩海钓的身影"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w05.jpg" alt="Pier Park 旁色彩缤纷的街角小店"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w03.jpg" alt="海滨长椅上相伴看海的老夫妻"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w06.jpg" alt="停在长堤栏杆上的鹈鹕"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w02.jpg" alt="晚霞中的木质长堤"></figure>
+      <figure><img loading="lazy" decoding="async" src="img/w07.jpg" alt="长堤上垂钓的父子"></figure>
     </div>
   </div>
-  <div class="wrap">
+  <div class="band-hero">
+    <div class="bh-bg" style="background-image:url('img/wave.jpg')"></div>
+    <div class="bh-veil"></div>
+    <div class="bh-in">
+      <div class="eyebrow">Discover Hervey Bay</div>
+      <h2>昆士兰最值得安居与投资的滨海城市之一</h2>
+    </div>
+  </div>
+  <div class="wrap band-body">
     <p>赫维湾（Hervey Bay）坐落于壮丽的弗雷泽海岸，将闲适的海滨生活与完善的日常配套融为一体——优质学校、医院、购物与餐饮近在咫尺。持续的区域基建投入、旺盛的住房需求与紧俏的租赁市场，使这里成为昆士兰增长最快的滨海城市之一。</p>
     <div class="stats">
       <div class="stat"><b>63.1K</b><span>区域人口</span></div>
@@ -682,6 +670,47 @@ document.querySelectorAll('.car').forEach(function(car){
     var p = page();
     dots.forEach(function(d,i){ d.classList.toggle('on', i===p); });
   }, {passive:true});
+});
+
+/* 图片跑马灯：左移一张 -> 停顿 -> 再左移；首图循环到队尾，无跳帧 */
+document.querySelectorAll('.strip').forEach(function(strip){
+  var track = strip.querySelector('.strip-track');
+  var figs = Array.prototype.slice.call(track.children);
+  if(figs.length < 2) return;
+  // 复制一轮，保证右侧永远有图可露出
+  figs.forEach(function(f){ track.appendChild(f.cloneNode(true)); });
+  var wait = parseInt(strip.getAttribute('data-interval') || '3200', 10);
+  var timer = null, moving = false;
+
+  function slide(){
+    if(moving) return;
+    moving = true;
+    var w = track.children[0].getBoundingClientRect().width;
+    track.style.transition = 'transform .8s cubic-bezier(.45,.05,.2,1)';
+    track.style.transform = 'translate3d(' + (-w) + 'px,0,0)';
+  }
+  track.addEventListener('transitionend', function(e){
+    if(e.propertyName !== 'transform') return;
+    track.style.transition = 'none';
+    track.appendChild(track.children[0]);      // 首图移到队尾
+    track.style.transform = 'translate3d(0,0,0)';
+    void track.offsetWidth;                    // 强制重排，锁定新位置
+    moving = false;
+  });
+
+  function start(){ if(!timer) timer = window.setInterval(slide, wait); }
+  function stop(){ if(timer){ window.clearInterval(timer); timer = null; } }
+  strip.addEventListener('mouseenter', stop);
+  strip.addEventListener('mouseleave', start);
+  document.addEventListener('visibilitychange', function(){
+    document.hidden ? stop() : start();
+  });
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+    }, {threshold: .15}).observe(strip);
+  } else { start(); }
 });
 
 document.querySelectorAll('.moments').forEach(function(mm){
