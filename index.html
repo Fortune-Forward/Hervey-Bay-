@@ -64,6 +64,22 @@
   .scroll-cue{margin-top:52px;font-size:12.5px;letter-spacing:.4em;color:var(--sea-soft)}
   .scroll-cue::after{content:"";display:block;width:1px;height:44px;background:linear-gradient(var(--sea-soft),transparent);margin-top:12px}
 
+  /* 手机端首屏：照片完整显示（四人不裁切），文案移到照片下方 */
+  @media(max-width:820px){
+    header{min-height:0;display:block;background:var(--sea-deep);align-items:stretch}
+    header .bg{position:relative;inset:auto;width:100%;aspect-ratio:1/1.12;
+               background-position:center 40%}
+    header .veil{position:absolute;top:0;left:0;right:0;bottom:auto;height:100%;
+                 background:linear-gradient(180deg,rgba(16,38,50,.18) 0%,rgba(16,38,50,0) 34%,
+                            rgba(40,105,138,.35) 78%,var(--sea-deep) 100%)}
+    header .inner{padding:24px 20px 40px;max-width:none}
+    header .pre{margin-bottom:14px}
+    header h1{font-size:clamp(32px,9vw,42px)}
+    header .sub{margin-top:12px;font-size:14px;line-height:1.9}
+    .scroll-cue{margin-top:30px}
+    .scroll-cue::after{height:32px}
+  }
+
   /* ---------- sections ---------- */
   section{padding:clamp(64px,9vw,120px) 0}
   .split{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,80px);align-items:center}
