@@ -256,29 +256,29 @@
   }
 
 
-  /* ===== 手机端：不再堆叠，改为纵向流 + 横向滑动条 ===== */
+  /* ===== 手机端：全部改为整屏纵向流，一张一行、不裁切、无需点按 ===== */
   @media(max-width:820px){
     .feature-cat{gap:22px}
-    .stack{position:static;height:auto;display:flex;align-items:stretch;justify-content:flex-start;
-           gap:10px;padding:4px 20px 8px;margin:0 -20px;
-           overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-    .stack::-webkit-scrollbar{display:none}
+    .stack{position:static;display:block;height:auto;overflow:visible;
+           margin:0;padding:0;scroll-snap-type:none}
     .snav{display:none}
-    .pol{position:static;flex:0 0 82%;width:auto;scroll-snap-align:center;cursor:default;
-         transform:none;filter:none;opacity:1;padding:10px 10px 12px}
-    .pol img{height:232px}
+    .pol{position:static;width:100%;margin:0 0 14px;cursor:default;
+         transform:none;filter:none;opacity:1;padding:11px 11px 13px}
+    .pol:last-of-type{margin-bottom:0}
+    .pol img{height:auto;aspect-ratio:4/3}
     .pol figcaption{position:static;left:auto;right:auto;bottom:auto;margin-top:9px;
-         white-space:normal;overflow:visible;font-size:12px}
+         white-space:normal;overflow:visible;font-size:12.5px}
 
-    /* 重点分类：整屏纵向流 */
-    .stack.flow{display:block;overflow:visible;margin:0;padding:0;scroll-snap-type:none}
-    .stack.flow .pol{width:100%;margin-bottom:14px;padding:11px 11px 13px}
-    .stack.flow .pol img{height:auto;aspect-ratio:4/3}
-    .stack.flow .pol:last-of-type{margin-bottom:0}
+    /* 首屏黑框：竖构图照片保留原比例 */
+    .stack-dark .pol img{aspect-ratio:3/4}
 
-    /* 首屏黑框：同样改成横向滑动 */
-    .stack-dark .pol{flex-basis:74%}
-    .stack-dark .pol img{height:300px}
+    /* 房型效果图轮播：同样竖排 */
+    .car .swipe{display:block;overflow:visible;scroll-snap-type:none}
+    .car .swipe img{width:100%;height:auto!important;aspect-ratio:16/10;object-fit:cover;
+         margin-bottom:10px}
+    .car .swipe img:last-child{margin-bottom:0}
+    .car-fit .swipe img{object-fit:cover;background:none}
+    .cbtn,.car .dots{display:none}
   }
 
   /* local moments gallery */
@@ -294,11 +294,12 @@
   .moments figure.on{transform:rotate(0deg) scale(1.13) translateY(-12px)!important;filter:none;
        box-shadow:0 22px 48px rgba(0,0,0,.42)}
   @media(max-width:820px){
-    .moments{display:block;columns:2;column-gap:11px;padding:16px 0 0}
-    .moments figure{width:auto;break-inside:avoid;margin:0 0 11px;padding:8px 8px 10px;cursor:default}
+    .moments{display:block;padding:16px 0 0}
+    .moments figure{width:100%;margin:0 0 13px;padding:10px 10px 12px;cursor:default}
+    .moments figure:last-child{margin-bottom:0}
     .moments figure+figure{margin-left:0}
     .moments img{height:auto;display:block}
-    .moments figcaption{margin-top:8px;font-size:11px}
+    .moments figcaption{margin-top:9px;font-size:12px}
     .moments figure.on{transform:none!important;box-shadow:0 12px 30px rgba(0,0,0,.3)}
   }
 
@@ -650,6 +651,7 @@
 </footer>
 <script>
 document.querySelectorAll('.car').forEach(function(car){
+  if(!window.matchMedia('(min-width:821px)').matches) return;
   var s = car.querySelector('.swipe');
   var n = s.children.length;
   var dw = car.querySelector('.dots');
