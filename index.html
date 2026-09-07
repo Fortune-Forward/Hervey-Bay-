@@ -376,7 +376,7 @@ header .sub{margin-top:26px;font-family:'Jost',sans-serif;font-size:12.5px;lette
      border-radius:50%;background:var(--gold)}
 
 /* 基建（米色块） */
-.infra-lead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,78px);align-items:center;
+.infra-lead{display:grid;grid-template-columns:1fr 1fr;column-gap:clamp(32px,5vw,78px);row-gap:0;align-items:center;
             margin-top:clamp(44px,5.2vw,78px)}
 .infra-lead img{width:100%;height:clamp(280px,33vw,470px);object-fit:cover}
   .infra-lead > .ir{overflow:hidden}
@@ -388,7 +388,16 @@ header .sub{margin-top:26px;font-family:'Jost',sans-serif;font-size:12.5px;lette
 .infra-lead .specs{display:flex;gap:22px;flex-wrap:wrap;margin-top:20px;
       font-family:'Jost',sans-serif;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
       color:var(--muted)}
-@media(max-width:900px){.infra-lead{grid-template-columns:1fr}}
+.infra-lead{grid-template-rows:auto auto 1fr}
+.infra-lead .il-head{grid-column:1;grid-row:1;align-self:start}
+.infra-lead .il-body{grid-column:1;grid-row:2;align-self:start;margin-top:22px}
+.infra-lead .il-pic{grid-column:2;grid-row:1/4}
+@media(max-width:900px){.infra-lead{grid-template-columns:1fr;gap:clamp(22px,3.4vw,34px)}
+  .infra-lead .il-head{grid-column:1;grid-row:1}
+  .infra-lead .il-pic{grid-column:1;grid-row:2}
+  .infra-lead{grid-template-rows:auto auto auto}
+  .infra-lead .il-pic{grid-row:2}
+  .infra-lead .il-body{grid-column:1;grid-row:3;margin-top:0}}
 .sherpan{margin-top:clamp(20px,2.4vw,32px);overflow:hidden}
 .sherpan img{width:100%;height:auto;display:block}
 .infra-4{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,34px);
@@ -940,14 +949,16 @@ footer .disc{color:rgba(255,255,255,.42);margin-top:24px;font-size:11.5px;line-h
       <p class="lede fx dl2">公共投资与国际资本正同步进场——医疗、机场、市中心与滨海旅游全面升级，为区域的下一个十年铺路。</p>
     </div>
     <div class="infra-lead">
-      <div>
+      <div class="il-head">
         <span class="tag fx">区域首个国际五星品牌 · 2026 年 5 月法院放行</span>
         <div class="amt fx dl1">$450M</div>
         <h4 class="cn-h fx dl1" style="margin:14px 0 16px">喜来登（Sheraton）滨海度假村 · Torquay Esplanade</h4>
+      </div>
+      <div class="ir il-pic"><img loading="lazy" decoding="async" src="img/sher1.jpg" alt="喜来登赫维湾度假村泳池与海滩效果图"></div>
+      <div class="il-body">
         <p class="fx dl2">由万豪国际运营，16 层住宅塔与 12 层酒店塔相连——223 间五星客房、400 套公寓、屋顶酒吧餐厅、会议中心与 1,000㎡ 零售餐饮。国际酒店资本的进场，标志着赫维湾正从悠闲海滨小城，走向全国性旅游与人口增长走廊。</p>
         <div class="specs fx dl3"><span>16 + 12 层双塔</span><span>223 间客房</span><span>400 套公寓</span><span>屋顶餐饮与会议中心</span></div>
       </div>
-      <div class="ir"><img loading="lazy" decoding="async" src="img/sher1.jpg" alt="喜来登赫维湾度假村泳池与海滩效果图"></div>
     </div>
     <figure class="sherpan ir"><img loading="lazy" decoding="async" src="img/sher2.jpg" alt="喜来登双塔与 Torquay Esplanade 海岸线效果图"></figure>
     <div class="infra-4 fx">
