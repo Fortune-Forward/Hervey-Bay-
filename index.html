@@ -1224,5 +1224,71 @@ document.querySelectorAll('.cyc').forEach(function(c){
 });
 </script>
 
+<script>
+/* 手机端自动播放：iOS/Android 会限制同时播放的视频数量，
+   所以只让进入视口的视频播放，离开即暂停；被策略拦下的用首次触摸补播。 */
+(function(){
+  var vids = [].slice.call(document.querySelectorAll('.mv video'));
+  if(!vids.length) return;
+  var blocked = false;
+
+  vids.forEach(function(v){
+    v.muted = true; v.defaultMuted = true;
+    v.playsInline = true;
+    v.setAttribute('muted','');
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    v.preload = 'none';
+    v.removeAttribute('autoplay');
+  });
+
+  function attempt(v){
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){ blocked = true; });
+  }
+  function tryPlay(v){
+    v.dataset.wants = '1';
+    if(!v.dataset.armed){
+      v.dataset.armed = '1';
+      v.preload = 'auto';
+      /* iOS 上刚 load() 就 play() 容易失败，等到有数据再补一次 */
+      v.addEventListener('canplay', function(){ if(v.dataset.wants==='1') attempt(v); });
+      v.addEventListener('loadeddata', function(){ if(v.dataset.wants==='1') attempt(v); });
+      try{ v.load(); }catch(e){}
+    }
+    attempt(v);
+  }
+
+  function visible(v){
+    var r = v.getBoundingClientRect();
+    return r.bottom > 0 && r.top < (innerHeight||document.documentElement.clientHeight);
+  }
+
+  function resume(){
+    blocked = false;
+    vids.forEach(function(v){ if(visible(v)) tryPlay(v); });
+  }
+  ['touchstart','click','scroll'].forEach(function(ev){
+    document.addEventListener(ev, function(){ if(blocked) resume(); }, {passive:true});
+  });
+  document.addEventListener('visibilitychange', function(){
+    if(!document.hidden) resume();
+  });
+
+  if('IntersectionObserver' in window){
+    var vio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v = e.target;
+        if(e.isIntersecting) tryPlay(v);
+        else { v.dataset.wants='0'; try{ v.pause(); }catch(err){} }
+      });
+    }, {rootMargin:'160px 0px', threshold:0.15});
+    vids.forEach(function(v){ vio.observe(v); });
+  }else{
+    vids.forEach(tryPlay);
+  }
+})();
+</script>
+
 </body>
 </html>
