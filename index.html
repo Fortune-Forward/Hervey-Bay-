@@ -314,6 +314,14 @@ header .sub{margin-top:26px;font-family:'Jost',sans-serif;font-size:12.5px;lette
 .mall-media figure{position:relative;overflow:hidden;background:#0d181c;margin:0}
 .mv{aspect-ratio:9/16}
 .mv video{width:100%;height:100%;object-fit:cover;display:block}
+.mv{cursor:pointer}
+.mv .vcue{position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;
+     border-radius:50%;background:rgba(12,22,28,.42);border:1px solid rgba(255,255,255,.55);
+     z-index:2;pointer-events:none;opacity:0;transition:opacity .35s ease}
+.mv.cue-on .vcue{opacity:1}
+.mv .vcue::after{content:"";position:absolute;left:17px;top:13px;
+     border-left:14px solid rgba(255,255,255,.92);
+     border-top:9px solid transparent;border-bottom:9px solid transparent}
 .mv figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 12px;color:#fff;
       font-family:'Noto Sans SC',sans-serif;font-size:11.5px;letter-spacing:.08em;
       background:linear-gradient(transparent,rgba(10,20,26,.7))}
@@ -1226,13 +1234,38 @@ document.querySelectorAll('.cyc').forEach(function(c){
 </script>
 
 <script>
-/* 手机端自动播放：
-   1) 交回浏览器原生 autoplay（脚本只做辅助，不接管）
-   2) 提前一屏预热，进入视口时已有数据可播
-   3) iOS 首次 play() 经常无声失败，用轮询持续补播，直到真的在播 */
+/* 手机端视频自动播放
+   1) 原生 autoplay 为主，脚本只做辅助
+   2) 提前一屏半预热，进入视口即播
+   3) 远离视口的视频释放解码器（iOS 同时可解码的视频数量有限）
+   4) 播不起来时显示播放标识，点一下即可播放 */
 (function(){
-  var vids = [].slice.call(document.querySelectorAll('.mv video'));
+  var figs = [].slice.call(document.querySelectorAll('.mv'));
+  var vids = [];
+  figs.forEach(function(f){ var v=f.querySelector('video'); if(v) vids.push(v); });
   if(!vids.length) return;
+
+  function attach(v){
+    if(!v.getAttribute('src')){ v.setAttribute('src', v._src); try{ v.load(); }catch(e){} }
+    if(v.preload !== 'auto') v.preload = 'auto';
+  }
+  /* 离开视口很久就摘掉 src，把解码器让给正在看的视频 */
+  function detach(v){
+    if(!v.getAttribute('src')) return;
+    try{ v.pause(); }catch(e){}
+    v.removeAttribute('src');
+    try{ v.load(); }catch(e){}
+    v.preload = 'none';
+  }
+  function kick(v){
+    if(!v._want || !v.paused) return;
+    var p = v.play();
+    if(p && p.catch) p.catch(function(){});
+  }
+  function cue(v, on){
+    var f = v.closest('.mv');
+    if(f) f.classList.toggle('cue-on', !!on);
+  }
 
   vids.forEach(function(v){
     v.muted = true; v.defaultMuted = true; v.playsInline = true;
@@ -1241,53 +1274,70 @@ document.querySelectorAll('.cyc').forEach(function(c){
     v.setAttribute('webkit-playsinline','');
     v.setAttribute('autoplay','');
     try{ v.disableRemotePlayback = true; }catch(e){}
+    v._src = v.getAttribute('src');
     v._want = false;
+    v._since = 0;
+
+    var fig = v.closest('.mv');
+    if(fig){
+      var c = document.createElement('span');
+      c.className = 'vcue';
+      fig.appendChild(c);
+      fig.addEventListener('click', function(){ v._want = true; attach(v); kick(v); run(); }, {passive:true});
+    }
+    ['canplay','loadeddata','loadedmetadata','suspend','stalled','waiting','pause'].forEach(function(ev){
+      v.addEventListener(ev, function(){ if(v._want) kick(v); });
+    });
+    v.addEventListener('playing', function(){ cue(v,false); });
+    v.addEventListener('timeupdate', function(){ cue(v,false); });
   });
 
-  function warm(v){
-    if(v._warm) return;
-    v._warm = 1; v.preload = 'auto';
-    try{ v.load(); }catch(e){}
+  var timer = null;
+  function pump(){
+    var pending = 0, now = Date.now();
+    for(var i=0;i<vids.length;i++){
+      var v = vids[i];
+      if(!v._want){ cue(v,false); continue; }
+      if(v.paused){
+        pending++;
+        kick(v);
+        /* 想播却迟迟不动 —— 露出播放标识，让人知道这是视频 */
+        if(v._since && now - v._since > 1600) cue(v,true);
+      }else{
+        cue(v,false);
+      }
+    }
+    if(!pending && timer){ clearInterval(timer); timer = null; }
   }
-  function kick(v){
-    if(!v._want || !v.paused) return;
-    var p = v.play();
-    if(p && p.catch) p.catch(function(){});
-  }
-  function want(v, on){
-    v._want = on;
-    if(on){ warm(v); kick(v); }
-    else if(!v.paused){ try{ v.pause(); }catch(e){} }
-  }
-  function nudge(){
-    if(document.hidden) return;
-    for(var i=0;i<vids.length;i++){ if(vids[i]._want && vids[i].paused) kick(vids[i]); }
-  }
-
-  ['canplay','loadeddata','loadedmetadata','suspend','stalled','pause','waiting'].forEach(function(ev){
-    vids.forEach(function(v){ v.addEventListener(ev, function(){ kick(v); }); });
-  });
+  function run(){ pump(); if(!timer) timer = setInterval(pump, 450); }
 
   if('IntersectionObserver' in window){
-    /* 提前一屏半开始下载 */
     var pre = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ warm(e.target); pre.unobserve(e.target); } });
-    }, {rootMargin:'800px 0px'});
-    /* 露头就播，完全离开视口才暂停 */
-    var run = new IntersectionObserver(function(es){
-      es.forEach(function(e){ want(e.target, e.isIntersecting); });
+      es.forEach(function(e){ if(e.isIntersecting) attach(e.target); });
+    }, {rootMargin:'900px 0px'});
+    var play = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var v = e.target;
+        v._want = e.isIntersecting;
+        if(e.isIntersecting){ v._since = Date.now(); attach(v); run(); }
+        else { v._since = 0; try{ v.pause(); }catch(err){} cue(v,false); }
+      });
     }, {rootMargin:'60px 0px', threshold:0.01});
-    vids.forEach(function(v){ pre.observe(v); run.observe(v); });
+    /* 离开两屏之外才真正释放解码器 */
+    var far = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(!e.isIntersecting) detach(e.target); });
+    }, {rootMargin:'1400px 0px'});
+    vids.forEach(function(v){ pre.observe(v); play.observe(v); far.observe(v); });
   }else{
-    vids.forEach(function(v){ want(v, true); });
+    vids.forEach(function(v){ v._want = true; v._since = Date.now(); attach(v); });
+    run();
   }
 
-  setInterval(nudge, 500);
   ['touchstart','touchend','click','scroll'].forEach(function(ev){
-    document.addEventListener(ev, nudge, {passive:true});
+    document.addEventListener(ev, run, {passive:true});
   });
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) nudge(); });
-  window.addEventListener('pageshow', nudge);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) run(); });
+  window.addEventListener('pageshow', run);
 })();
 </script>
 
